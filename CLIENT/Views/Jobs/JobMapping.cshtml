@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="loading-bro" id="loading-bro"
+    style="
+        display: none;
+        position: fixed;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        text-align: center;
+        z-index: 1111111;
+        background-color: #0000002b;
+    "
+> 
+    <section class="loading">
+        <span class="loadWords">Tunggu Sedang Mengirimkan Email...</span>
+        <span class="loading__anim"></span>
+    </section>
+</div>
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Pemetaan Pekerjaan Karyawan Bootcamp</h3>
+                <h6 class="font-weight-normal mb-0">Pemetaan pekerjaan berisi berisi data-data employe bootcamp berserta nilai <span class="text-primary">yang akan di mapping ke perusahaan client</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-3" id="cardClass">
+    
+</div>
+<div class="container" id="card">
+
+</div>
+<div class="modal fade" style="z-index: 9999; background-color: #000000a6;" id="ModalSendEmail" tabindex="-1" role="dialog" aria-labelledby="ModalSendEmail" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="ModalSendEmail">Kirim Email Pementaan Ke Karyawan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <form class="needs-validation" novalidate>
+                <input type="text" class="form-control" id="name_operasional" name="name_operasional" value="@Context.Session.GetString("Username")" hidden disabled required>
+                <div class="modal-body" id="modal">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onClick="ClosModalSendEmail()">Batal</button>
+                    <button type="submit" id="submit" class="btn btn-primary">Kirim Email</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Jobs/jobmapping.js" asp-append-version="true"></script>
+}

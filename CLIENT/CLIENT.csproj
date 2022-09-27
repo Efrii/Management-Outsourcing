@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Microsoft.AspNet.WebApi.Client" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Microsoft.AspNetCore.Session" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Views\Login\" />
+    <None Remove="Base\" />
+    <None Remove="Repository\" />
+    <None Remove="Repositories\Data\" />
+    <None Remove="Repositories\Interface\" />
+    <None Remove="ViewModels\" />
+    <None Remove="Views\Score\" />
+    <None Remove="Views\Dashboard\" />
+    <None Remove="Views\Interview\" />
+    <None Remove="Views\Class\" />
+    <None Remove="Views\Company\" />
+    <None Remove="Views\CV\" />
+    <None Remove="Bootstrap.v3.Datetimepicker.CSS" />
+    <None Remove="Bootstrap.v3.Datetimepicker" />
+    <None Remove="Views\Jobs\" />
+    <None Remove="Views\Acceptment\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Bootstrap.v3.Datetimepicker.CSS" Version="4.17.49" />
+    <PackageReference Include="Bootstrap.v3.Datetimepicker" Version="4.17.49" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
+    <Folder Include="Base\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Repositories\Data\" />
+    <Folder Include="Repositories\Interface\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\Score\" />
+    <Folder Include="Views\Dashboard\" />
+    <Folder Include="Views\Interview\" />
+    <Folder Include="wwwroot\js\Score\" />
+    <Folder Include="Views\Class\" />
+    <Folder Include="wwwroot\js\Class\" />
+    <Folder Include="wwwroot\js\Interview\" />
+    <Folder Include="Views\Company\" />
+    <Folder Include="wwwroot\Data\" />
+    <Folder Include="Views\CV\" />
+    <Folder Include="wwwroot\js\CV\" />
+    <Folder Include="Views\Jobs\" />
+    <Folder Include="Views\Acceptment\" />
+    <Folder Include="wwwroot\js\Account\" />
+    <Folder Include="wwwroot\js\Dashboard\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\API\API.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\js\Score\" />
+    <Content Remove="wwwroot\js\Class\" />
+    <Content Remove="wwwroot\js\Interview\" />
+    <Content Remove="wwwroot\CV\" />
+    <Content Remove="wwwroot\js\CV\" />
+    <Content Remove="wwwroot\js\Account\" />
+    <Content Remove="wwwroot\js\Dashboard\" />
+  </ItemGroup>
+</Project>

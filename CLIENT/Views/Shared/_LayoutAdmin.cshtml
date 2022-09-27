@@ -1,0 +1,277 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - Management Outsorcing</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/vendors/feather/feather.css">
+    <link rel="stylesheet" href="~/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="~/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <link rel="stylesheet" href="~/vendors/mdi/css/materialdesignicons.min.css">
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="~/vendors/ti-icons/css/themify-icons.css">
+    @*<link rel="stylesheet" type="text/css" href="~/js/select.dataTables.min.css">*@
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/favicon.png" />
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo mr-5" href="#"><img src="~/images/logo.png" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="#"><img src="~/images/logosmall.png" style="width: 100%;" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <a class="balik-kanan navbar-toggler navbar-toggler align-self-center" type="button" id="minimize" data-toggle="minimize">
+                    <span class="icon-menu"></span>
+                </a>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            <img src="~/images/face.jpg" alt="profile" />
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                            @if (User.IsInRole("CLIENT"))
+                            {
+                                <a class="dropdown-item" asp-controller="Account" asp-action="LogoutCompany">
+                                    <i class="ti-power-off text-primary"></i>
+                                    Logout
+                                </a>
+                            }
+                            else if (User.IsInRole("EMPLOYEEBOOTCAMP") || User.IsInRole("TRAINNER") || User.IsInRole("MANAGER") || User.IsInRole("OPERASIONAL"))
+                            {
+                                <a class="dropdown-item" asp-controller="Account" asp-action="Logout">
+                                    <i class="ti-power-off text-primary"></i>
+                                    Logout
+                                </a>
+                            }
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial -->
+            <!-- partial:partials/_sidebar.html -->
+
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    @if (User.IsInRole("CLIENT"))
+                    {
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Dashboard" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Dashboard" asp-action="Company">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Jobs" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Jobs" asp-action="Index">
+                                <i class="mdi mdi-briefcase menu-icon"></i>
+                                <span class="menu-title">Pekerjaan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "Cvin" ? "active" : "")">
+                            <a class="nav-link" asp-controller="CV" asp-action="Cvin">
+                                <i class="mdi mdi-book-plus menu-icon"></i>
+                                <span class="menu-title">CV Masuk</span>
+                            </a>
+                        </li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Interview" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Interview" asp-action="Company">
+                                <i class="mdi mdi-message-processing menu-icon"></i>
+                                <span class="menu-title">Interview Perusahaan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Acceptment" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Acceptment" asp-action="Company">
+                                <i class="mdi mdi-playlist-check menu-icon"></i>
+                                <span class="menu-title">Acceptment Interview</span>
+                            </a>
+                        </li>
+                    }
+                    else if (User.IsInRole("TRAINNER"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Dashboard" asp-action="Trainner">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Score" asp-action="Index">
+                                <i class="mdi mdi-dictionary menu-icon"></i>
+                                <span class="menu-title">Data Nilai</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Class" asp-action="Index">
+                                <i class="mdi mdi-account-multiple menu-icon"></i>
+                                <span class="menu-title">Data Kelas</span>
+                            </a>
+                        </li>
+                    }
+                    else if (User.IsInRole("MANAGER"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Dashboard" asp-action="Index">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Score" asp-action="ScoreManager">
+                                <i class="mdi mdi-dictionary menu-icon"></i>
+                                <span class="menu-title">Detail Bootcamp</span>
+                            </a>
+                        </li>
+                    }
+                    else if (User.IsInRole("OPERASIONAL"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Dashboard" asp-action="Operasional">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Jobs" asp-action="JobMapping">
+                                <i class="mdi mdi-briefcase menu-icon"></i>
+                                <span class="menu-title">Pemetaan Pekerjaan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="CV" asp-action="Index">
+                                <i class="mdi mdi-folder-account menu-icon"></i>
+                                <span class="menu-title">Lihat CV</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Interview" asp-action="Index">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Interview</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Interview" asp-action="Result">
+                                <i class="mdi mdi-tooltip-text menu-icon"></i>
+                                <span class="menu-title">Hasil Interview</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Acceptment" asp-action="Index">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Data Penerimaan</span>
+                            </a>
+                        </li>
+                    }
+                    else if (User.IsInRole("EMPLOYEEBOOTCAMP"))
+                    {
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Dashboard" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Dashboard" asp-action="Bootcamp">
+                                <i class="icon-grid menu-icon"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "CV" ? "active" : "")">
+                            <a class="nav-link" asp-controller="CV" asp-action="MyCv">
+                                <i class="mdi mdi-book menu-icon"></i>
+                                <span class="menu-title">CV Kamu</span>
+                            </a>
+                        </li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Interview" ? "active" : "")">
+                            <a class="nav-link" asp-controller="Interview" asp-action="Schedule">
+                                <i class="mdi mdi-timetable menu-icon"></i>
+                                <span class="menu-title">Jadwal Interview</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+
+                <div class="content-wrapper">
+
+                    @RenderBody()
+
+                </div>
+
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+                    </div>
+                </footer>
+                <!-- partial -->
+
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- plugins:js -->
+     @*<script src="~/vendors/js/vendor.bundle.base.js"></script>*@ 
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="~/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="~/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="~/js/dataTables.select.min.js"></script>
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="~/js/off-canvas.js"></script>
+    <script src="~/js/hoverable-collapse.js"></script>
+    <script src="~/js/template.js"></script>
+    <script src="~/js/settings.js"></script>
+    <script src="~/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="~/js/dashboard.js"></script>
+    <script src="~/js/Chart.roundedBarCharts.js"></script>
+    <!-- End custom js for this page-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/lib/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.colVis.min.js"></script>
+    <script src="~/js/Dashboard/script.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+
+</html>
+

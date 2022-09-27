@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Score";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Detail Bootcamp</h3>
+                <h6 class="font-weight-normal mb-0">Data score berisi nilai-nilai employe <span class="text-primary">selama mengikuti Bootcamp</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loading-bro" id="loading-bro"> 
+    <section class="loading">
+        <span class="loadWords">Loading Data...</span>
+        <span class="loading__anim"></span>
+    </section>
+</div>
+
+<div class="row mt-3" id="cardClass">
+    
+</div>
+
+<div class="container" id="card">
+
+</div>
+
+@section Scripts{
+    <script src="~/js/Score/scoremanager.js" asp-append-version="true"></script>
+}

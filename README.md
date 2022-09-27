@@ -1,0 +1,6 @@
+# Management_Resourcing
+CRUD SCORE ✅
+CRUD INTERVIEW ✅
+CD UPLOAD CV ✅
+CRUD JOBS ✅
+

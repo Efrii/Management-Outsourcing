@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Kelas Bootcamp";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Kelas Bootcamp</h3>
+                <h6 class="font-weight-normal mb-0">Data kelas berisi kelas-kelas bootcamp <span class="text-primary">yang nanti akan di isi oleh karyawan bootcamp</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Data Kelas</h4>
+        <div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAddClass" id="ModalAddDatas">
+                Tambah Data Kelas
+                <i class="mdi mdi-plus-box"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="loading-bro" id="loading-bro"> 
+    <section class="loading">
+        <span class="loadWords">Loading Data Kelas...</span>
+        <span class="loading__anim"></span>
+    </section>
+</div>
+
+<div class="row mt-3" id="cardClass">
+    
+</div>
+<div class="container" id="card">
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalAddClass" tabindex="-1" role="dialog" aria-labelledby="ModalAddClass" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalAddDataLabel">Tambah Kelas Baru</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="needs-validation" novalidate>
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="col mb-3">
+                            <label for="segment1">Nama Kelas</label>
+                            <input type="text" class="form-control" id="name_class" name="name_class" placeholder="Nama Kelas" required>
+                            <div class="invalid-feedback">
+                                Nama Kelas Wajib Diisi
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" id="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Edit -->
+<div class="modal fade" id="ModalEditData" tabindex="-1" role="dialog" aria-labelledby="ModalEditData" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalEditData">Edit Data Kelas</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form class="needs-validation-edit" novalidate>
+            <div class="modal-body" id="textEditClass">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" id="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/js/Class/script.js" asp-append-version="true"></script>
+}

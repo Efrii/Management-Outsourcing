@@ -1,0 +1,97 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Bootcamp MCC";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Selamat Datang MCC @Context.Session.GetString("Username")</h3>
+                <input name="name_trainner" id="name_trainner" disabled hidden value="@Context.Session.GetString("Id")" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card tale-bg">
+            <div class="card-people mt-auto">
+                <img src="~/images/people.svg" alt="people">
+                <div class="weather-info">
+                    <div class="d-flex">
+                        <div>
+                            <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
+                        </div>
+                        <div class="ml-2">
+                            <h4 class="location font-weight-normal">Jakarta</h4>
+                            <h6 class="font-weight-normal">Indonesia</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 grid-margin transparent">
+        <div class="row">
+            <div class="col-md-6 mb-4 stretch-card transparent">
+                <div class="card card-tale">
+                    <div class="card-body text-center" id="trainner">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 stretch-card transparent">
+                <div class="card card-dark-blue">
+                    <div class="card-body text-center" id="grade">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col stretch-card transparent">
+                <div class="card card-light-danger">
+                    <div class="card-body" id="acceptment">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-lg-12 ml-auto mr-auto mb-4 mt-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <p class="card-title">Progress Outsourcing Kamu</p>
+                <div class="multisteps-form__progress text-center">
+                    <p class="multisteps-form__progress-btn" id="proses1" type="button" title="User Info">Lulus Bootcamp</p>
+                    <p class="multisteps-form__progress-btn" id="proses2" type="button" title="User Info">Upload CV</p>
+                    <p class="multisteps-form__progress-btn" id="proses3" type="button" title="User Info">CV Dicek Dan Dikirim Ke Client</p>
+                    <p class="multisteps-form__progress-btn" id="proses4" type="button" title="Address">Schedule Interview</p>
+                    <p class="multisteps-form__progress-btn" id="proses5" type="button" title="Order Info">Selesai Interview</p>
+                    <p class="multisteps-form__progress-btn" id="proses6" type="button" title="Order Info">Menerima Hasil Interview</p>
+                    <p class="multisteps-form__progress-btn" id="proses7" type="button" title="Comments">Bekerja Di Client</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col-8 grid-margin stretch-card" style="margin: 0 auto;">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Nilai Bootcamp Kamu</h4>
+                <canvas id="barChartBootcamp"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Dashboard/bootcamp.js" asp-append-version="true"></script>
+}

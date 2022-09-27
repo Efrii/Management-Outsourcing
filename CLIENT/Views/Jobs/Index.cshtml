@@ -1,0 +1,123 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Data Pekerjaan Perusahaan";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Data Pekerjaan Perusahaan</h3>
+                <h6 class="font-weight-normal mb-0">Data pekerjaan berisi pekerjaan-pekeraan <span class="text-primary">di perusahaan client</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Data Pekerjaan</h4>
+        <div class="mb-3">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAddData" id="ModalAddDatas">
+                Tambah Data Pekerjaan
+                <i class="mdi mdi-library-plus"></i>
+            </button>
+        </div>
+        <div class="table-responsive">
+            <table class="display expandable-table dataTable no-footer" style="width: 100%;" id="TableJobs">
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Nama Pekerjaan
+                        </th>
+                        <th>
+                            Recruitment Skill
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalAddData" tabindex="-1" role="dialog" aria-labelledby="ModalAddData" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalAddDataLabel">Tambah Data Pekerjaan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form class="needs-validation" novalidate>
+            @Html.AntiForgeryToken()
+            <div class="modal-body">
+                <input type="text" class="form-control" id="id_company" name="id_company" required value="@Context.Session.GetString("Id")" hidden disabled>
+                <div class="form-group">
+                    <div class="col mb-3">
+                        <label for="id_class">Nama Pekerjaan</label>
+                        <input type="text" class="form-control" id="name_jobs" name="name_jobs" placeholder="Nama Pekerjaan" required>
+                        <div class="invalid-feedback">
+                            Nama Pekerjaan Wajib Diisi
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col mb-3">
+                        <label for="id_class">Recruitment Skill</label>
+                        <textarea class="form-control" name="recruitment_skill" id="recruitment_skill" rows="2" required></textarea>
+                        <div class="invalid-feedback">
+                            Recruitment Skill Wajib Diisi
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" id="submit" class="btn btn-primary">Tambah</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="ModalEditData" tabindex="-1" role="dialog" aria-labelledby="ModalEditData" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalEditData">Edit Data Pekerjaan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form class="needs-validation-edit" novalidate>
+            <div class="modal-body" id="textEditJobs">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" id="editSmartphone" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Jobs/script.js" asp-append-version="true"></script>
+}

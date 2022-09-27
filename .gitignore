@@ -1,0 +1,5 @@
+API/bin/*
+API/obj/*
+CLIENT/bin/*
+CLIENT/obj/*
+.vs/*

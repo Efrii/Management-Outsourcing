@@ -1,0 +1,189 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Nilai Karyawan Bootcamp";
+    Layout = "_LayoutAdmin";
+}
+
+<input type="text" class="form-control" id="id_trainner" name="id_trainner" value="@Context.Session.GetString("Id")" hidden disabled required>
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Nilai Karyawan Bootcamp</h3>
+                <h6 class="font-weight-normal mb-0">Data nilai berisi nilai-nilai employee <span class="text-primary">selama mengikuti Bootcamp</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Data Score</h4>
+        <div class="mb-3">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAddData" id="ModalAddDatas">
+                Tambah Data Nilai
+                <i class="mdi mdi-library-plus"></i>
+            </button>
+        </div>
+        <div class="table-responsive">
+            <table class="display expandable-table dataTable no-footer" style="width: 100%;" id="TableScore">
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Nama
+                        </th>
+                        <th>
+                            Kelas
+                        </th>
+                        <th>
+                            Segment 1
+                        </th>
+                        <th>
+                            Segment 2
+                        </th>
+                        <th>
+                            Segment 3
+                        </th>
+                        <th>
+                            Segment 4
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="ModalAddData" tabindex="-1" role="dialog" aria-labelledby="ModalAddData" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalAddDataLabel">Tambah Data Nilai</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form class="needs-validation" novalidate>
+            @Html.AntiForgeryToken()
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col mb-3">
+                        <label for="id_employee">Pilih Karyawan Bootcamp</label>
+                        <select class="form-control" id="id_employee" required>
+                        </select>
+                        <div class="invalid-feedback">
+                            Karyawan Wajib Diisi
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col mb-3">
+                        <label for="id_class">Pilih Kelas</label>
+                        <select class="form-control" id="id_class" required>
+                        </select>
+                        <div class="invalid-feedback">
+                            Kelas Wajib Diisi
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="col mb-3">
+                                <label for="segment1">Nilai Segment 1</label>
+                                <input type="text" class="form-control" id="segment1" name="segment1" placeholder="Nilai Segment 1" required>
+                                <div class="invalid-feedback">
+                                    Nilai Segment 1 Wajib Diisi
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="col mb-3">
+                                <label for="segment2">Nilai Segment 2</label>
+                                <input type="text" class="form-control" id="segment2" name="segment2" placeholder="Score Segment 1" required>
+                                <div class="invalid-feedback">
+                                    Nilai Segment 2 Wajib Diisi
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="col mb-3">
+                                <label for="segment3">Nilai Segment 3</label>
+                                <input type="text" class="form-control" id="segment3" name="segment3" placeholder="Nilai Segment 3" required>
+                                <div class="invalid-feedback">
+                                    Nilai Segment 3 Wajib Diisi
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="col mb-3">
+                                <label for="segment4">Nilai Segment 4</label>
+                                <input type="text" class="form-control" id="segment4" name="segment4" placeholder="Nilai Segment 4" required>
+                                <div class="invalid-feedback">
+                                    Nilai Segment 4 Wajib Diisi
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" id="submitDataScore" class="btn btn-primary">Tambah</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="ModalEditData" tabindex="-1" role="dialog" aria-labelledby="ModalEditData" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalEditData">Edit Data Nilai</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form class="needs-validation-edit" novalidate>
+            @Html.AntiForgeryToken()
+            <div class="modal-body" id="textEditScore">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" id="editSmartphone" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Score/script.js" asp-append-version="true"></script>
+}

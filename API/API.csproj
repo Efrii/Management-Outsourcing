@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="Microsoft.EntityFrameworkCore.Design" />
+    <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
+    <None Remove="Microsoft.EntityFrameworkCore.Tools" />
+    <None Remove="Swashbuckle.AspNetCore" />
+    <None Remove="Microsoft.IdentityModel.Tokens" />
+    <None Remove="System.IdentityModel.Tokens.Jwt" />
+    <None Remove="Controllers\" />
+    <None Remove="Context\" />
+    <None Remove="Models\" />
+    <None Remove="Migrations\" />
+    <None Remove="Base\" />
+    <None Remove="Repositories\" />
+    <None Remove="Repositories\Data\" />
+    <None Remove="Repositories\Interface\" />
+    <None Remove="Middleware\" />
+    <None Remove="Services\" />
+    <None Remove="ViewModels\" />
+    <None Remove="images\" />
+    <None Remove="Attachment\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.21.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.21.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Context\" />
+    <Folder Include="Models\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Base\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Repositories\Data\" />
+    <Folder Include="Repositories\Interface\" />
+    <Folder Include="Middleware\" />
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="images\" />
+    <Folder Include="Attachment\" />
+  </ItemGroup>
+</Project>

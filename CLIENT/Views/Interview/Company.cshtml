@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Jadwal Interview Perusahaan";
+    Layout = "_LayoutAdmin";
+}
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Jadwal Interview Perusahaan</h3>
+                <h6 class="font-weight-normal mb-0">Berisi jadwal-jadwal interview perusahaan <span class="text-primary">dengan employee bootcamp</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Data Interview</h4>
+        <div class="table-responsive">
+            <table style="width: 100%;" class="display expandable-table dataTable no-footer" id="TableInterviewByCompany">
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Nama Karyawan
+                        </th>
+                        <th>
+                            Pekerjaan
+                        </th>
+                        <th>
+                            Tanggal
+                        </th>
+                        <th>
+                            URL
+                        </th>
+                        <th>
+                            Interviewer
+                        </th>
+                        <th>
+                            Progress
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="ModalEditInterview" tabindex="-1" role="dialog" aria-labelledby="ModalEditData" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalEditData">Edit Data Interview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="needs-validation-edit" novalidate>
+                <input type="text" class="form-control" id="id_company" name="id_company" value="@Context.Session.GetString("Id")" hidden disabled required>
+                <div class="modal-body" id="textEditInterview">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" id="submit" class="btn btn-primary">Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Interview/company.js" asp-append-version="true"></script>
+}

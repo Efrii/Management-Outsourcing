@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Schedule Interview";
+    Layout = "_LayoutAdmin";
+}
+<input type="text" class="form-control" id="id_company" name="id_company" value="@Context.Session.GetString("Id")" hidden disabled required>
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Data Penerimaan Karyawan</h3>
+                <h6 class="font-weight-normal mb-0">Data penerimaan atau acceptment berisi daftar employe yang sudah interview <span class="text-primary">dan hasil dapat ditolak atau di terima</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Data Acceptment</h4>
+        <div class="table-responsive">
+            <table style="width: 100%;" class="display expandable-table dataTable no-footer" id="TableAcceptment">
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Nama
+                        </th>
+                        <th>
+                            Pekerjaan
+                        </th>
+                        <th>
+                            Interviewer
+                        </th>
+                        <th>
+                            Progress Interview
+                        </th>
+                        <th>
+                            Hasil
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Acceptment/company.js" asp-append-version="true"></script>
+}

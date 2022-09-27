@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Jadwal Interview Karyawan";
+    Layout = "_LayoutAdmin";
+}
+<input type="text" class="form-control" name="id" id="id" required value="@Context.Session.GetString("Id")" hidden disabled>
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Jadwal Interview Kamu</h3>
+                <h6 class="font-weight-normal mb-0">Data interview berisi jadwal-jadwal interview employe <span class="text-primary">setelah mengikuti bootcamp</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loading-bro" id="loading-bro"> 
+    <section class="loading">
+        <span class="loadWords">Loading Data...</span>
+        <span class="loading__anim"></span>
+    </section>
+</div>
+
+<div class="row" id="cardScheduleInterview">
+    
+</div>
+
+@section Scripts{
+    <script src="~/js/Interview/schedule.js" asp-append-version="true"></script>
+}

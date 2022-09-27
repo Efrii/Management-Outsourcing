@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Hasil Interview";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="loading-bro" id="loading-bro"
+    style="
+        display: none;
+        position: fixed;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        text-align: center;
+        z-index: 1111111;
+        background-color: #0000002b;
+    "
+> 
+    <section class="loading">
+        <span class="loadWords">Tunggu Sedang Mengirimkan Email...</span>
+        <span class="loading__anim"></span>
+    </section>
+</div>
+
+<input type="text" class="form-control" id="name_operasional" name="name_operasional" value="@Context.Session.GetString("Username")" hidden disabled required>
+<input type="text" class="form-control" id="id_company" name="id_company" value="@Context.Session.GetString("Id")" hidden disabled required>
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                <h3 class="font-weight-bold">Hasil Interview Karyawan</h3>
+                <h6 class="font-weight-normal mb-0">Data hasil interview berisi daftar employe yang ditolak maupun di terima <span class="text-primary">dalam proses interview sebelumnya</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Data Hasil Interview</h4>
+        <div class="table-responsive">
+            <table style="width: 100%;" class="display expandable-table dataTable no-footer" id="TableAcceptment">
+                <thead>
+                    <tr>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Nama
+                        </th>
+                        <th>
+                            Kelas
+                        </th>
+                        <th>
+                            Perusahaan
+                        </th>
+                        <th>
+                            Pekerjaan
+                        </th>
+                        <th>
+                            Progress
+                        </th>
+                        <th>
+                            Hasil
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Interview/result.js" asp-append-version="true"></script>
+}

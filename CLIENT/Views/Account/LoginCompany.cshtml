@@ -1,0 +1,241 @@
+﻿@*@model PhoneChalin.ViewModels.Login*@
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Login Company";
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Perusahaan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="~/lib/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #224abe !important;
+        }
+
+        .container {
+            width: 1000px !important;
+        }
+
+        .register {
+            padding: 10px 0px 10px 0px;
+            border-bottom: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="col-6 shadow p-3 mb-3 bg-white rounded mt-3" style="margin: auto;">
+                <div class="col">
+                    <div class="text-center mt-5">
+                        <img style="width:35% !important;" src="~/images/logo.png" class="img-fluid img-logo-login" />
+                    </div>
+                    <div class="text-center m-2">
+                        <span class="text-danger" id="messageError"></span>
+                        <p><strong>LOGIN UNTUK PERUSAHAAN</strong></p>
+                    </div>
+                    <form class="needs-validation-company" novalidate>
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label>Username</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" minlength="5" required>
+                                <div class="invalid-feedback" id="errorUsername">
+                                    Usernamer tidak boleh kurang dari 5 karakter
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-key"></i>
+                                    </div>
+                                </div>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" minlength="8" required>
+                                <div class="invalid-feedback" id="errorPassword">
+                                    Password tidak boleh kurang dari 8 karakter
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="submit" class="btn btn-info btn-lg btn-block">Login</button>
+                        </div>
+                    </form>
+                    <p class="text-right mt-2">Lupa <a href="#" data-toggle="modal" data-target="#sendOTP">Password ?</a></p>
+                    <p class="text-center mt-3">Tidak punya akun ? <a href="#" data-toggle="modal" data-target="#registerModal">Daftar</a></p>
+                    <p class="text-center mt-3">Kembali ke  <a asp-controller="Home" asp-action="Index">menu</a></p>
+                </div>
+            </div>
+
+            <!-- Modal Register -->
+            <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="text-center register">
+                            <h5 class="modal-title" id="registerModal">Daftar Akun Untuk Perusahaan</h5>
+                        </div>
+                        <form class="needs-validation-register-company" novalidate>
+                            @Html.AntiForgeryToken()
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col-6 mb-3">
+                                        <label for="nipEmployee">Nama Perusahaan</label>
+                                        <input type="text" class="form-control" name="name_company" id="name_company" placeholder="Nama Perusahaan" minlength="3" required>
+                                        <div class="invalid-feedback">
+                                            Nama perusahaan harus diisi
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="nameEmployee">Email</label>
+                                        <input type="email" class="form-control" name="email_company" id="email_company" placeholder="Email Perusahaan" required>
+                                        <div class="invalid-feedback">
+                                            Email perusahaan harus diisi
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col mb-3">
+                                        <label for="address_company">Alamat Perusahaan</label>
+                                        <textarea type="text" class="form-control" name="address_company" id="address_company" placeholder="Alamat Perusahaan" required></textarea>
+                                        <div class="invalid-feedback">
+                                            Alamat perusahaan harus diisi
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-4 mb-3">
+                                        <label for="phone_number">Nomer Telfon</label>
+                                        <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="Nomer Telfon Perusahaan" minlength="11" maxlength="12" required>
+                                        <div class="invalid-feedback">
+                                            Nomer perusahaan harus diisi
+                                        </div>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" name="username" id="usernames" placeholder="Username" minlength="5" required>
+                                        <div class="invalid-feedback">
+                                            Username employee is required
+                                        </div>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" name="password" id="passwords" placeholder="Password" minlength="8" maxlength="12" required>
+                                        <div class="invalid-feedback">
+                                            Password employee is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary" id="submits">Daftar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            @* // Send OTP *@
+            <div class="modal fade" id="sendOTP" tabindex="-1" role="dialog" aria-labelledby="sendOTP" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="text-center register">
+                            <h5 class="modal-title" id="sendOTP">Send OTP</h5>
+                        </div>
+                        <form action="/Account/SendOTP" method="post" class="needs-validation-sendOTP" novalidate>
+                            @Html.AntiForgeryToken()
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col mb-3">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" name="email" id="emails" placeholder="Email" required>
+                                        <div class="invalid-feedback">
+                                            Email employee is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="submitss">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            @* Modal Reset Password *@
+            <div class="modal fade" id="resetPassword" tabindex="-1" role="dialog" aria-labelledby="resetPassword" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="text-center register">
+                            <h5 class="modal-title" id="resetPassword">Reset Password</h5>
+                        </div>
+                        <form action="/Account/ResetPassword" method="post" class="needs-validation-resetPassword" novalidate>
+                            @Html.AntiForgeryToken()
+                            <div class="modal-body">
+                                <div class="form-row">
+                                    <div class="col mb-3">
+                                        <label for="email">Your OTP</label>
+                                        <input type="text" class="form-control" name="otp" id="otp" placeholder="Email" required>
+                                        <div class="invalid-feedback">
+                                            OTP is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col mb-3">
+                                        <label for="newpassword">New Password</label>
+                                        <input type="text" class="form-control" name="newpassword" id="newpassword" placeholder="New Password" required>
+                                        <div class="invalid-feedback">
+                                            New password is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col mb-3">
+                                        <label for="email">Confirm Password</label>
+                                        <input type="text" class="form-control" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" required>
+                                        <div class="invalid-feedback">
+                                            Confirm password is required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="checkpasswordMatch">
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" id="submitss">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/account/script.js" asp-append-version="true"></script>
+</body>
+</html>
